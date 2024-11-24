@@ -9,9 +9,9 @@ set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -std=c99 -g -O3 -Wall -Wsign-compare -Wsign-
 # 查找目录下的所有源文件，并将名称保存到 *_SRCS 变量
 aux_source_directory(. MAIN_SRCS)
 file(GLOB_RECURSE BZ_SRCS bz/*.c)
-file(GLOB_RECURSE BZ_API_SRCS bz_api/*.c)
+# file(GLOB_RECURSE BZ_API_SRCS bz_api/*.c)
 # 指定生成目标，链接库
-add_executable(demo ${BZ_SRCS} ${BZ_API_SRCS} ${MAIN_SRCS})
+add_executable(demo ${BZ_SRCS} ${MAIN_SRCS})
 target_link_libraries(
 demo
 -Wl,--start-group

@@ -1,15 +1,11 @@
-#include "baize.h"
-
-#include "stdio.h"
+#include <stdio.h>
 
 int main(int argc , char* argv[])
 {
-	__bz bz = bz_api_init();
-	__bz_tensor t = bz.tensor;
+	(void)argc;
+	(void)argv;
 
-	bz.srand(105);
-	t.print(t.create_rand("[3 , 3 , 3]" , -10 , 10 , BZ_INT_TYPE));
-
+	return 0;
 #if 0
 	FILE* fp = fopen("C:\\Users\\16281\\PycharmProjects\\AI\\img.rgb" , "rb");
 	fseek(fp, 0, SEEK_END);

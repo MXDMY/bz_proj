@@ -15,6 +15,6 @@ add_executable(demo ${BZ_SRCS} ${MAIN_SRCS})
 target_link_libraries(
 demo
 -Wl,--start-group
-libm.a
+libm.so
 -Wl,--end-group
 )

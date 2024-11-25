@@ -38,20 +38,23 @@ bz_u8 bz_mem[BZ_MEM_SIZE];
 #define false 0
 #endif
 
-// 全局错误号，错误号预留位 -99 到 -0 ，每个类型（全局、局部）错误号的值域都应不同
+// 全局错误号，错误号预留位 -99 到 -0（错误号编写格式均参考该枚举类型）
 enum bz_errcode
 {
     BZ_ERRCODE_HEAD = -99,         // 错误号头部，确保所有错误号为负数
 
-    BZ_FUNC_RETURN_ABNORMAL_ERROR, // 函数返回异常，例如框架内存函数自定义修改时出现不应当有的返回值
-    BZ_FUNC_PARAM_ERROR,           // 函数参数错误
+    BZ_FUNC_PARAM_ERROR,           // 函数参数错误，参数不满足函数要求
     BZ_MEM_ALLOC_ERROR,            // 内存分配错误
-    BZ_DEV_OPEN_ERROR,             // 设备打开错误
-    BZ_DEV_CLOSE_ERROR,            // 设备关闭错误
-    BZ_DEV_READ_ERROR,             // 设备读取错误
-    BZ_DEV_WRITE_ERROR,            // 设备写入错误
 
     BZ_ERRCODE_TAIL = -0,          // 错误号尾部，不使用，增强易读性
+};
+// 局部错误号（张量计算）
+enum bz_tensor_errcode
+{
+    BZ_TENSOR_ERRCODE_HEAD = -199,
+
+
+    BZ_TENSOR_ERRCODE_TAIL = -100,
 };
 
 // 部分函数不直接返回错误号，可通过该全局变量查阅，用于与 C 标准库函数对齐

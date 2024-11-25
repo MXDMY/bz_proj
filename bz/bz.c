@@ -2,6 +2,8 @@
 
 bz_int bz_errno = 0;
 
+bz_uint bz_dtype_size_table[BZ_DTYPE_END] = {sizeof(bz_int) , sizeof(bz_float)};
+
 void* bz_mem_alloc(bz_uint size)
 {
 #if BZ_MEM_ALLOC_MODE == 0
@@ -158,7 +160,7 @@ bz_uint bz_mh_rand()
 {
     if(index > 624)
         return 0;
-    if(624 == index) //旋转
+    if(624 == index) // 旋转
     {
         bz_int32 x , xA;
         for(bz_uint i = 0 ; i < 624 ; i++) 

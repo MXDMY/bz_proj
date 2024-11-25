@@ -50,7 +50,7 @@
 typedef int bz_int32;         // 32 位有符号整形
 typedef int bz_int;           // 通用有符号整型
 typedef unsigned int bz_uint; // 通用无符号整型
-typedef double bz_float;      // 通用浮点型
+typedef float bz_float;      // 通用浮点型
 typedef unsigned char bz_u8;  // 字节类型
 
 // 浮点数精度

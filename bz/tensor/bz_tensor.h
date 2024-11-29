@@ -18,7 +18,7 @@ typedef struct bz_tensor_object
     bz_uint itemsize; // 元素的字节大小
 }bz_tensor;
 
-// 创建张量，失败返回 NULL，错误号将在 errcode_p 返回
+// 创建张量，失败返回 NULL，若 errcode_p 不为 NULL，错误号将在所指地址处返回（注意：函数成功不会在此有任何修改）
 bz_tensor* bz_tensor_create(bz_uint* shape , bz_uint ndim , bz_dtype dtype , bz_int* errcode_p);
 
 // 销毁张量，*dblptr 指向将变更为 NULL，若 dblptr 为 NULL 或 *dblptr 为 NULL，则无操作

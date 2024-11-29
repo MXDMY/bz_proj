@@ -2,9 +2,10 @@
 
 bz_tensor* bz_tensor_create(bz_uint* shape , bz_uint ndim , bz_dtype dtype , bz_int* errcode_p)
 {
-    if(NULL == shape || 0 == ndim || NULL == errcode_p)
+    if(NULL == shape || 0 == ndim)
     {
-        *errcode_p = BZ_FUNC_PARAM_ERROR;
+        if(errcode_p)
+            *errcode_p = BZ_FUNC_PARAM_ERROR;
         return NULL;
     }
     bz_uint count = 1;
@@ -12,7 +13,8 @@ bz_tensor* bz_tensor_create(bz_uint* shape , bz_uint ndim , bz_dtype dtype , bz_
     {
         if(0 == shape[i])
         {
-            *errcode_p = BZ_FUNC_PARAM_ERROR;
+            if(errcode_p)
+                *errcode_p = BZ_FUNC_PARAM_ERROR;
             return NULL;
         }
         else
@@ -67,7 +69,8 @@ BZ_TENSOR_CREATE_FREE_SHAPE_DUP:
 BZ_TENSOR_CREATE_FREE_DATA:
     bz_mem_free(data);
 BZ_TENSOR_CREATE_MEM_ALLOC_ERROR:
-    *errcode_p = BZ_MEM_ALLOC_ERROR;
+    if(errcode_p)
+        *errcode_p = BZ_MEM_ALLOC_ERROR;
     return NULL;
 }
 

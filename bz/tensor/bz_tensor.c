@@ -60,6 +60,8 @@ bz_tensor* bz_tensor_create(bz_uint* shape , bz_uint ndim , bz_dtype dtype , bz_
     t->count = count;
     t->dtype = dtype;
     t->itemsize = itemsize;
+    if(errcode_p)
+        *errcode_p = 0;
     return t;
 
 BZ_TENSOR_CREATE_FREE_OFFSETS:
@@ -85,4 +87,13 @@ void bz_tensor_delete(bz_tensor** dblptr)
     bz_mem_free(t->offsets);
     bz_mem_free(t);
     *dblptr = NULL;
+}
+
+bz_int bz_tensor_get(bz_tensor* tsr , void* data)
+{
+    if(NULL == tsr || NULL == data)
+        return BZ_FUNC_PARAM_ERROR;
+
+    bz_mem_cpy(tsr->data , data , tsr->count * tsr->itemsize);
+    return 0;
 }

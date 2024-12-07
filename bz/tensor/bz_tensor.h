@@ -18,11 +18,17 @@ typedef struct bz_tensor_object
     bz_uint itemsize; // 元素的字节大小
 }bz_tensor;
 
-// 创建张量，失败返回 NULL，若 errcode_p 不为 NULL，错误号将在所指地址处返回（注意：函数成功不会在此有任何修改）
+// 创建张量，失败返回 NULL，若 errcode_p 不为 NULL，错误号将在所指地址处返回（注意：函数成功会同时将其置 0）
 bz_tensor* bz_tensor_create(bz_uint* shape , bz_uint ndim , bz_dtype dtype , bz_int* errcode_p);
 
 // 销毁张量，*dblptr 指向将变更为 NULL，若 dblptr 为 NULL 或 *dblptr 为 NULL，则无操作
 void bz_tensor_delete(bz_tensor** dblptr);
+
+/*
+  从 data 指向的内存中获得张量数据，成功返回 0，失败返回错误号
+  该函数不确认 data 指向的数据类型，请至少确保 data 指向的空间足够
+*/
+bz_int bz_tensor_get(bz_tensor* tsr , void* data);
 
 
 #endif
